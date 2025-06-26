@@ -48,7 +48,7 @@ class DatabaseMethods {
   }
     Future<Stream<QuerySnapshot>> getAdminBooking(String id) async {
     return await FirebaseFirestore.instance
-        .collection("users")
+        .collection("Hotel")
         .doc(id)
         .collection("Booking")
         .snapshots();

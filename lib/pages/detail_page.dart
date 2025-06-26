@@ -12,6 +12,7 @@ import 'package:random_string/random_string.dart';
 
 class DetailPage extends StatefulWidget {
   final String name;
+  final String address;
   final String price;
   final String description;
   final bool wifi;
@@ -20,17 +21,17 @@ class DetailPage extends StatefulWidget {
   final bool bathroom;
   final String hotelId;
 
-  const DetailPage({
-    super.key,
-    required this.name,
-    required this.price,
-    required this.description,
-    required this.wifi,
-    required this.hdtv,
-    required this.kitchen,
-    required this.bathroom,
-    required this.hotelId,
-  });
+  const DetailPage(
+      {super.key,
+      required this.name,
+      required this.price,
+      required this.description,
+      required this.wifi,
+      required this.hdtv,
+      required this.kitchen,
+      required this.bathroom,
+      required this.hotelId,
+      required this.address});
 
   @override
   State<DetailPage> createState() => _DetailPageState();
@@ -90,7 +91,6 @@ class _DetailPageState extends State<DetailPage> {
         : "Selected Date";
   }
 
- 
   TextEditingController guestController = TextEditingController();
   @override
   void initState() {
@@ -415,7 +415,7 @@ class _DetailPageState extends State<DetailPage> {
             "UserName": username,
             "CheckIn": " ${_formatDate(startDate).toString()}",
             "CheckOut": " ${_formatDate(endDate).toString()}",
-            "Guest": guestController.text.trim(),
+            "Guests": guestController.text.trim(),
             "Total": finalAmout.toString(),
             "HotelName": widget.name,
           };

@@ -28,6 +28,6 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
         title: 'Bookig App',
         debugShowCheckedModeBanner: false,
-        home: OnBoarding());
+        home: BottomNavigation());
   }
 }

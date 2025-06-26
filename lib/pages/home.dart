@@ -164,6 +164,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     MaterialPageRoute(
                         builder: (context) => DetailPage(
                               name: ds["HotelName"],
+                              address: ds["HotelAddress"],
                               price: ds["HotelCharges"],
                               wifi: ds["Wifi"] ?? false,
                               hdtv: ds["HDTV"] ?? false,

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:online_shopping/assets/images/app_imges.dart';
 import 'package:online_shopping/assets/themes/themes.dart';
+import 'package:online_shopping/utils/database.dart';
 import 'package:online_shopping/utils/shared_preferences.dart';
 
 class OwnerHome extends StatefulWidget {
@@ -14,11 +15,21 @@ class OwnerHome extends StatefulWidget {
 
 class _OwnerHomeState extends State<OwnerHome> {
   Stream? bookingsStream;
-  String? id;
-   getonthesharedpref() async {
+  String? id, name;
+  getonthesharedpref() async {
     id = await SharedPreferencesHelper().getUserId();
+    name = await SharedPreferencesHelper().getUserName();
+    bookingsStream = await DatabaseMethods().getAdminBooking(id!);
     setState(() {});
   }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getonthesharedpref();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,7 +72,7 @@ class _OwnerHomeState extends State<OwnerHome> {
                           width: 40,
                         ),
                         const SizedBox(width: 10),
-                        Text("Hello Owner", style: Themes.whiteTextStyle(20)),
+                        Text("Hello "+ name!, style: Themes.whiteTextStyle(20)),
                       ],
                     ),
                     const SizedBox(height: 30),
@@ -78,89 +89,8 @@ class _OwnerHomeState extends State<OwnerHome> {
             height: 20.0,
           ),
           Container(
-            width: MediaQuery.of(context).size.width,
-            margin: const EdgeInsets.all(10),
-            decoration: BoxDecoration(
-              color: const Color(0xffececf8),
-              borderRadius: BorderRadius.circular(20),
-            ),
-            child: Row(
-              children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(20),
-                  child: Image.asset(
-                    "lib/assets/images/boy.jpg",
-                    height: 120,
-                    width: 120,
-                    fit: BoxFit.cover,
-                  ),
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Icon(Icons.hotel, color: Colors.blue[700], size: 30),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Text("Name of Owner", style: Themes.normalText(18)),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Icon(Icons.calendar_month,
-                            color: Colors.blue[700], size: 30),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Text("24/06/2025- 26/06/2025",
-                            style: Themes.normalText(16))
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Row(
-                          children: [
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Icon(Icons.people,
-                                color: Colors.blue[700], size: 30),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Text("4 Guests", style: Themes.normalText(16))
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Icon(Icons.money,
-                                color: Colors.blue[700], size: 30),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Text("\$100", style: Themes.normalText(16))
-                          ],
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
+              height: MediaQuery.of(context).size.height * 0.25,
+              child: allAdminBookings()),
         ],
       ),
     );

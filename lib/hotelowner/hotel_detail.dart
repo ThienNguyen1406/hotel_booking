@@ -215,7 +215,7 @@ class _HotelDetailState extends State<HotelDetail> {
                         children: [
                           Checkbox(
                             value: hdtv,
-                            onChanged: (value) => setState(() => wifi = value!),
+                            onChanged: (value) => setState(() => hdtv = value!),
                             activeColor: Colors.blue,
                           ),
                           const Icon(Icons.tv, color: Colors.blue),
@@ -229,7 +229,7 @@ class _HotelDetailState extends State<HotelDetail> {
                         children: [
                           Checkbox(
                             value: kitchen,
-                            onChanged: (value) => setState(() => wifi = value!),
+                            onChanged: (value) => setState(() => kitchen = value!),
                             activeColor: Colors.blue,
                           ),
                           const Icon(Icons.kitchen, color: Colors.blue),
@@ -243,7 +243,7 @@ class _HotelDetailState extends State<HotelDetail> {
                         children: [
                           Checkbox(
                             value: bathroom,
-                            onChanged: (value) => setState(() => wifi = value!),
+                            onChanged: (value) => setState(() => bathroom = value!),
                             activeColor: Colors.blue,
                           ),
                           const Icon(Icons.bathroom, color: Colors.blue),
